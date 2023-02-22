@@ -1,0 +1,16 @@
+services:
+  app:
+    build: ./webapi/Dockerfile
+    container_name: mestreruan.api
+    restart: always
+    ports:
+      - 8080:8080
+      - 4433:4433
+    expose:
+      - 8080
+    networks:
+      - mestreruan
+    # depends_on:
+    #   - db
+networks:
+  mestreruan:
