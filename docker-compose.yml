@@ -17,10 +17,10 @@ services:
     container_name: mestreruan.app
     restart: always
     ports:
-      - 8888:8888
-      - 4443:4443
+      - 80:80
+      #- 4443:4443
     expose:
-      - 8888
+      - 80
     networks:
       - mestreruan
     depends_on:
