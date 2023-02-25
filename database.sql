@@ -39,5 +39,8 @@ CREATE TABLE IF NOT EXISTS alteracoes (
   entidade VARCHAR(16) NOT NULL,
   antes VARCHAR(500) NOT NULL, -- Armazena os dados antes da modificados
   depois VARCHAR(500) NOT NULL, -- Armazena os dados depois da modificação
-  PRIMARY KEY(id)
+  dataAlteracao DATE NOT NULL,
+  alteradoPor CHAR(6) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(alteradoPor) REFERENCES funcionarios(re)
 );
