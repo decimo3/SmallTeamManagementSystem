@@ -48,4 +48,17 @@ public class Funcionario : Microsoft.AspNetCore.Mvc.ControllerBase
       return BadRequest();
     }
   }
+  [Microsoft.AspNetCore.Mvc.HttpDelete(Name = "ApagarFuncionario")]
+  public Microsoft.AspNetCore.Mvc.ActionResult Delete(mestreruan.api.Models.Funcionario funcionario)
+  {
+    try
+    {
+      mestreruan.api.Model.FuncionarioDAO.apagarFuncionario(funcionario);
+      return NoContent();
+    }
+    catch (System.InvalidOperationException)
+    {
+      return BadRequest();
+    }
+  }
 }

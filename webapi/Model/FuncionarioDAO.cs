@@ -43,4 +43,13 @@ public static class FuncionarioDAO
       connection.Close();
     }
   }
+  public static void apagarFuncionario(mestreruan.api.Models.Funcionario funcionario)
+  {
+    using(var connection = new Npgsql.NpgsqlConnection(connectionString))
+    {
+      connection.Open();
+      connection.Delete<mestreruan.api.Models.Funcionario>(funcionario);
+      connection.Close();
+    }
+  }
 }
