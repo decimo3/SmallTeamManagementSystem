@@ -5,11 +5,6 @@ namespace mestreruan.api.controllers;
 
 public class Funcionario : Microsoft.AspNetCore.Mvc.ControllerBase
 {
-  [Microsoft.AspNetCore.Mvc.HttpGet(Name = "recuperarFuncionarios")]
-  public IEnumerable<mestreruan.api.Models.Funcionario> Get()
-  {
-    return mestreruan.api.Model.FuncionarioDAO.recuperarFuncionarios();
-  }
   [Microsoft.AspNetCore.Mvc.HttpGet("{re}", Name = "recuperarFuncionario")]
   public Microsoft.AspNetCore.Mvc.ActionResult<mestreruan.api.Models.Funcionario> Get(int re)
   {
