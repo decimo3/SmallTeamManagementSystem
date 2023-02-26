@@ -3,7 +3,7 @@ namespace mestreruan.api.controllers;
 [Microsoft.AspNetCore.Mvc.ApiController]
 [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
 
-public class Eletricistas : Microsoft.AspNetCore.Mvc.ControllerBase
+public class Funcionarios : Microsoft.AspNetCore.Mvc.ControllerBase
 {
   [Microsoft.AspNetCore.Mvc.HttpGet(Name = "recuperarEletricistasAtivos")]
   public IEnumerable<mestreruan.api.Models.Funcionario> Get()
