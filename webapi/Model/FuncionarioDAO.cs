@@ -7,6 +7,15 @@ namespace mestreruan.api.Model;
 public static class FuncionarioDAO
 {
   private static string connectionString = $"Host=localhost;Username=usuario;Password=123456789;Database=aplicacao";
+    public static IEnumerable<mestreruan.api.Models.Funcionario> recuperarEletricistasAtivos()
+  {
+    using(var connection = new Npgsql.NpgsqlConnection(connectionString))
+    {
+      connection.Open();
+      return connection.Query<mestreruan.api.Models.Funcionario>(@$"SELECT * FROM funcionario WHERE funcao = 0 AND situacao = 0");
+      connection.Close();
+    }
+  }
   public static IEnumerable<mestreruan.api.Models.Funcionario> recuperarFuncionarios()
   {
     using(var connection = new Npgsql.NpgsqlConnection(connectionString))
@@ -49,6 +58,15 @@ public static class FuncionarioDAO
     {
       connection.Open();
       connection.Delete<mestreruan.api.Models.Funcionario>(funcionario);
+      connection.Close();
+    }
+  }
+  public static IEnumerable<mestreruan.api.Models.Funcionario> recuperarFuncionarios(string funcao)
+  {
+    using(var connection = new Npgsql.NpgsqlConnection(connectionString))
+    {
+      connection.Open();
+      return connection.Query<mestreruan.api.Models.Funcionario>(@$"SELECT * FROM funcionario WHERE funcao = 0");
       connection.Close();
     }
   }
