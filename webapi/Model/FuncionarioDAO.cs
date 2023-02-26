@@ -1,6 +1,7 @@
 // using System.Data;
 // using Microsoft.Data.SqlClient;
 using Dapper;
+using Dapper.Contrib.Extensions;
 
 namespace mestreruan.api.Model;
 public static class FuncionarioDAO
@@ -24,13 +25,21 @@ public static class FuncionarioDAO
       connection.Close();
     }
   }
-  public static void inserirFuncionario(mestreruan.api.Models.Funcionario f)
+  public static void inserirFuncionario(mestreruan.api.Models.Funcionario funcionario)
   {
     using(var connection = new Npgsql.NpgsqlConnection(connectionString))
     {
       connection.Open();
-      connection.Execute(@"INSERT INTO public.funcionario(cpf, re, matricula, nome, sobrenome, apelido, senha, funcao, situacao, escala) VALUES (@cpf, @re, @matricula, @nome, @sobrenome, @apelido, @senha, @funcao, @situacao, @escala)",
-        new {cpf = f.cpf, re = f.re, matricula = f.matricula, nome = f.nome, sobrenome = f.sobrenome, apelido = f.apelido, senha = f.senha, funcao = f.funcao, situacao = f.situacao, escala = f.escala});
+      connection.Insert<mestreruan.api.Models.Funcionario>(funcionario);
+      connection.Close();
+    }
+  }
+  public static void alterarFuncionario(mestreruan.api.Models.Funcionario funcionario)
+  {
+    using(var connection = new Npgsql.NpgsqlConnection(connectionString))
+    {
+      connection.Open();
+      connection.Update<mestreruan.api.Models.Funcionario>(funcionario);
       connection.Close();
     }
   }

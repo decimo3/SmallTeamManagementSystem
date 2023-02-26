@@ -5,12 +5,12 @@ namespace mestreruan.api.controllers;
 
 public class Funcionario : Microsoft.AspNetCore.Mvc.ControllerBase
 {
-  [Microsoft.AspNetCore.Mvc.HttpGet(Name = "GetFuncionarios")]
+  [Microsoft.AspNetCore.Mvc.HttpGet(Name = "recuperarFuncionarios")]
   public IEnumerable<mestreruan.api.Models.Funcionario> Get()
   {
     return mestreruan.api.Model.FuncionarioDAO.recuperarFuncionarios();
   }
-  [Microsoft.AspNetCore.Mvc.HttpGet("{re}", Name = "GetFuncionario")]
+  [Microsoft.AspNetCore.Mvc.HttpGet("{re}", Name = "recuperarFuncionario")]
   public Microsoft.AspNetCore.Mvc.ActionResult<mestreruan.api.Models.Funcionario> Get(int re)
   {
     try
@@ -22,12 +22,25 @@ public class Funcionario : Microsoft.AspNetCore.Mvc.ControllerBase
       return NotFound();
     }
   }
-  [Microsoft.AspNetCore.Mvc.HttpPost(Name = "PostFuncionario")]
+  [Microsoft.AspNetCore.Mvc.HttpPost(Name = "inserirFuncionario")]
   public Microsoft.AspNetCore.Mvc.ActionResult Post(mestreruan.api.Models.Funcionario funcionario)
   {
     try
     {
       mestreruan.api.Model.FuncionarioDAO.inserirFuncionario(funcionario);
+      return NoContent();
+    }
+    catch (System.InvalidOperationException)
+    {
+      return BadRequest();
+    }
+  }
+  [Microsoft.AspNetCore.Mvc.HttpPut(Name = "AlterarFuncionario")]
+  public Microsoft.AspNetCore.Mvc.ActionResult Put(mestreruan.api.Models.Funcionario funcionario)
+  {
+    try
+    {
+      mestreruan.api.Model.FuncionarioDAO.alterarFuncionario(funcionario);
       return NoContent();
     }
     catch (System.InvalidOperationException)

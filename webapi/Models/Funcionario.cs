@@ -2,9 +2,11 @@
 // System.ComponentModel.DataAnnotations
 // https://macoratti.net/13/12/c_vdda.htm
 namespace mestreruan.api.Models;
+[Dapper.Contrib.Extensions.Table("funcionario")]
 public class Funcionario
 {
   public string cpf {get; set;}
+  [Dapper.Contrib.Extensions.ExplicitKey]
   public int re {get; set;}
   public int matricula {get; set;}
   public string nome {get; set;}
