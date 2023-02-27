@@ -9,7 +9,6 @@ RUN dotnet restore
 # copy everything else and build app
 COPY . .
 WORKDIR /tmp
-ENV ASPNETCORE_ENVIRONMENT Development
 RUN dotnet publish -c release -o /out
 
 # final stage/image
