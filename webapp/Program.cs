@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-app.Urls.Add("http://*:8888");
+app.Urls.Add($"http://*:{System.Environment.GetEnvironmentVariable("WEBAPP_PORT")}");
 // app.Urls.Add("https://*:4433");
 
 // Configure the HTTP request pipeline.

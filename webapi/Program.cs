@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.Urls.Add("http://*:80");
+app.Urls.Add($"http://*:{System.Environment.GetEnvironmentVariable("WEBAPI_PORT")}");
 // app.Urls.Add("https://*:4433");
 
 // Configure the HTTP request pipeline.

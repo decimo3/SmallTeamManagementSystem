@@ -10,7 +10,6 @@ RUN dotnet restore
 COPY . .
 WORKDIR /tmp
 ENV ASPNETCORE_ENVIRONMENT Development
-RUN dotnet add package Swashbuckle.AspNetCore --version 6.2.3
 RUN dotnet publish -c release -o /out
 
 # final stage/image
