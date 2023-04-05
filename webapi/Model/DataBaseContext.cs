@@ -3,10 +3,10 @@ using mestreruan.api.Models;
 namespace mestreruan.api.Database;
 public class DataBaseContext : DbContext
 {
-  private string server = System.Environment.GetEnvironmentVariable("PGBASE_HOST");
-  private string dbuser = System.Environment.GetEnvironmentVariable("PGBASE_USER");
-  private string dbpass = System.Environment.GetEnvironmentVariable("PGBASE_PASS");
-  private string dbbase = System.Environment.GetEnvironmentVariable("PGBASE_BASE");
+  private string server = System.Environment.GetEnvironmentVariable("POSTGRES_HOST");
+  private string dbuser = System.Environment.GetEnvironmentVariable("POSTGRES_USER");
+  private string dbpass = System.Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+  private string dbbase = System.Environment.GetEnvironmentVariable("POSTGRES_DB");
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
     optionsBuilder.UseNpgsql($"Host={server};Username={dbuser};Password={dbpass};Database={dbbase}");
