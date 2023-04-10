@@ -3,6 +3,15 @@ using mestreruan.api.Database;
 namespace mestreruan.api.Model;
 public static class FuncionarioDAO
 {
+  public static List<Funcionario> recuperarFuncionarios()
+  {
+    using(var dbContext = new DataBaseContext())
+    {
+      return (from f in dbContext.Funcionarios
+              where (f.funcao == Funcionario.Funcao.Eletricista && f.situacao == Funcionario.Situacao.Ativo)
+              select f).ToList();
+    }
+  }
   public static List<Funcionario> recuperarFuncionarios(Funcionario.Situacao situacao, Funcionario.Funcao funcao)
   {
     Funcionario.Escala? escala;
@@ -28,14 +37,14 @@ public static class FuncionarioDAO
       if(escala == null)
       {
         return (from f in dbContext.Funcionarios
-                where (f.funcao == funcao && f.situacao == situacao && f.escala == escala)
-                select new Funcionario()).ToList();
+                where (f.funcao == funcao && f.situacao == situacao)
+                select f).ToList();
       }
       else
       {
         return (from f in dbContext.Funcionarios
-                where (f.funcao == funcao && f.situacao == situacao)
-                select new Funcionario()).ToList();
+                where (f.funcao == funcao && f.situacao == situacao && f.escala == escala)
+                select f).ToList();
       }
     }
   }
@@ -45,7 +54,7 @@ public static class FuncionarioDAO
     {
       return (from f in dbContext.Funcionarios
               where f.re == re
-              select new Funcionario()).Single();
+              select f).Single();
     }
   }
   public static void inserirFuncionario(mestreruan.api.Models.Funcionario funcionario)
