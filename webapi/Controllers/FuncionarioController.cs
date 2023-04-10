@@ -5,6 +5,18 @@ namespace mestreruan.api.controllers;
 
 public class Funcionario : Microsoft.AspNetCore.Mvc.ControllerBase
 {
+  [Microsoft.AspNetCore.Mvc.HttpGet(Name = "recuperarEletricistasAtivos")]
+  public Microsoft.AspNetCore.Mvc.ActionResult<IEnumerable<mestreruan.api.Models.Funcionario>> Get()
+  {
+    try
+    {
+      return mestreruan.api.Model.FuncionarioDAO.recuperarFuncionarios();
+    }
+    catch (System.InvalidOperationException)
+    {
+      return NotFound();
+    }
+  }
   [Microsoft.AspNetCore.Mvc.HttpGet("{re}", Name = "recuperarFuncionario")]
   public Microsoft.AspNetCore.Mvc.ActionResult<mestreruan.api.Models.Funcionario> Get(int re)
   {
