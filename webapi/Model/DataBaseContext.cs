@@ -14,12 +14,15 @@ public class DataBaseContext : DbContext
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     modelBuilder.Entity<Funcionario>().HasKey(i => i.re);
-    modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
-    modelBuilder.Entity<Viatura>().ToTable("Viatura");
+    modelBuilder.Entity<Funcionario>().ToTable("funcionario");
+    modelBuilder.Entity<Viatura>().ToTable("viatura");
     modelBuilder.Entity<Equipe>().HasKey(o => new {o.servico, o.espelho, o.dia});
-    modelBuilder.Entity<Equipe>().ToTable("Equipe");
+    modelBuilder.Entity<Equipe>().ToTable("equipe");
+    modelBuilder.Entity<Telefone>().HasKey(i => i.numero);
+    modelBuilder.Entity<Telefone>().ToTable("telefone");
   }
   public DbSet<Funcionario> Funcionarios { get; set; }
   public DbSet<Viatura> Viaturas { get; set; }
   public DbSet<Equipe> Equipes { get; set; }
+  public DbSet<Telefone> Telefones { get; set; }
 }
