@@ -28,7 +28,7 @@ public class Equipe
   public string? viaturaId {get; set;}
   public Viatura viatura {get; set;}
   [Required]
-  [ForeingKey("Telefone")]
+  [ForeignKey("Telefone")]
   public int telefoneId {get; set;}
   public Telefone telefone {get; set;}
   public enum Servico {Corte, Religa, PQMT, Negociacao, Inspecao, Cadastro}
