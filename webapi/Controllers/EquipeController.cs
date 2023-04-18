@@ -22,7 +22,7 @@ public class EquipeController : ControllerBase
       return BadRequest();
     }
   }
-  [HttpGet("{ano}/{mes}/{dia}/{supervisor}", Name = "recuperarEquipes")]
+  [HttpGet("{ano}/{mes}/{dia}/{supervisor}", Name = "recuperarEquipesPorSupervisor")]
   public ActionResult<IEnumerable<Equipe>> Get(int ano, int mes, int dia, int supervisor)
   {
     var data = new DateOnly(year:ano, month:mes, day:dia);
