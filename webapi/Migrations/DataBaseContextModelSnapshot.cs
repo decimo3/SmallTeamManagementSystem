@@ -30,8 +30,8 @@ namespace webapi.Migrations
                     b.Property<int>("espelho")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("dia")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("dia")
+                        .HasColumnType("date");
 
                     b.Property<int>("ajudanteId")
                         .HasColumnType("integer");

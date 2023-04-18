@@ -10,7 +10,7 @@ public class Equipe
   [Required]
   public Servico servico {get; set;}
   [Required]
-  public DateTime dia {get; set;}
+  public DateOnly dia {get; set;}
   [Required]
   [ForeignKey("Funcionario")]
   public int supervisorId {get; set;}

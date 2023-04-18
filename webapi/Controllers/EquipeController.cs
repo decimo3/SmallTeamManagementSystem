@@ -9,7 +9,7 @@ public class EquipeController : ControllerBase
   [HttpGet("{ano}/{mes}/{dia}", Name = "recuperarEquipes")]
   public ActionResult<IEnumerable<Equipe>> Get(int ano, int mes, int dia)
   {
-    var data = new DateTime(year:ano, month:mes, day:dia);
+    var data = new DateOnly(year:ano, month:mes, day:dia);
     try
     {
       using(var dbContex = new DataBaseContext())
@@ -25,7 +25,7 @@ public class EquipeController : ControllerBase
   [HttpGet("{ano}/{mes}/{dia}/{servico}/{espelho}", Name = "recuperarEquipe")]
   public ActionResult<IEnumerable<Equipe>> Get(int ano, int mes, int dia, int servico, int espelho)
   {
-    var data = new DateTime(year:ano, month:mes, day:dia);
+    var data = new DateOnly(year:ano, month:mes, day:dia);
     var tipoServico = (Equipe.Servico)servico;
     try
     {
