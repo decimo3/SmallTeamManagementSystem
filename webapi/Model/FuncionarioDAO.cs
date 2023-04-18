@@ -3,16 +3,16 @@ using mestreruan.api.Database;
 namespace mestreruan.api.Model;
 public static class FuncionarioDAO
 {
-  public static List<Funcionario> recuperarFuncionarios()
+  public static List<mestreruan.api.Models.Funcionario> recuperarFuncionarios()
   {
     using(var dbContext = new DataBaseContext())
     {
       return (from f in dbContext.Funcionarios
-              where (f.funcao == Funcionario.Funcao.Eletricista && f.situacao == Funcionario.Situacao.Ativo)
+              where (f.funcao == Funcionario.Funcao.Eletricista && f.situacaoFuncionario == Funcionario.SituacaoFuncionario.Ativo)
               select f).ToList();
     }
   }
-  public static List<Funcionario> recuperarFuncionarios(Funcionario.Situacao situacao, Funcionario.Funcao funcao)
+  public static List<Funcionario> recuperarFuncionarios(Funcionario.SituacaoFuncionario situacao, Funcionario.Funcao funcao)
   {
     Funcionario.Escala? escala;
     switch(DateTime.Today.DayOfWeek)
@@ -37,18 +37,18 @@ public static class FuncionarioDAO
       if(escala == null)
       {
         return (from f in dbContext.Funcionarios
-                where (f.funcao == funcao && f.situacao == situacao)
+                where (f.funcao == funcao && f.situacaoFuncionario == situacao)
                 select f).ToList();
       }
       else
       {
         return (from f in dbContext.Funcionarios
-                where (f.funcao == funcao && f.situacao == situacao && f.escala == escala)
+                where (f.funcao == funcao && f.situacaoFuncionario == situacao && f.escala == escala)
                 select f).ToList();
       }
     }
   }
-  public static mestreruan.api.Models.Funcionario recuperarFuncionario(int re)
+  public static Funcionario recuperarFuncionario(int re)
   {
     using(var dbContext = new DataBaseContext())
     {
@@ -57,7 +57,7 @@ public static class FuncionarioDAO
               select f).Single();
     }
   }
-  public static void inserirFuncionario(mestreruan.api.Models.Funcionario funcionario)
+  public static void inserirFuncionario(Funcionario funcionario)
   {
     using(var dbContext = new DataBaseContext())
     {
@@ -65,7 +65,7 @@ public static class FuncionarioDAO
       dbContext.SaveChanges();
     }
   }
-  public static void alterarFuncionario(mestreruan.api.Models.Funcionario funcionario)
+  public static void alterarFuncionario(Funcionario funcionario)
   {
     using(var dbContext = new DataBaseContext())
     {
@@ -73,7 +73,7 @@ public static class FuncionarioDAO
       dbContext.SaveChanges();
     }
   }
-  public static void apagarFuncionario(mestreruan.api.Models.Funcionario funcionario)
+  public static void apagarFuncionario(Funcionario funcionario)
   {
     using(var dbContext = new DataBaseContext())
     {
