@@ -5,15 +5,17 @@ namespace mestreruan.api.Models;
 public class Telefone
 {
   [Key]
-  public int numero {get; set;}
+  public long numero {get; set;}
   [Required]
   public string? chip {get; set;}
   [Required]
-  public int imei {get; set;}
+  public long imei {get; set;}
   [Required]
   [MaxLength(16)]
   public string? marca {get; set;}
   [Required]
   [MaxLength(16)]
   public string? modelo {get; set;}
+  public SituacaoTelefone situacaoTelefone {get; set;}
+  public enum SituacaoTelefone {Ativo, Manutencao, Devolvido, Reserva}
 }

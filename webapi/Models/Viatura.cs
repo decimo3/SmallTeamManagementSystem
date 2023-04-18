@@ -10,11 +10,6 @@ public class Viatura
   [Required]
   public int ordem {get; set;}
   [Required]
-  [MaxLength(32)]
-  public string? marcaModelo {get; set;}
-  [MaxLength(17)]
-  public string? chassi {get; set;} // opcional
-  [Required]
-  public Situacao situacao {get; set;}
-  public enum Situacao {Ativo, Manutencao, Devolvido, Reserva}
+  public SituacaoViatura situacaoViatura {get; set;}
+  public enum SituacaoViatura {Ativo, Manutencao, Devolvido, Reserva}
 }

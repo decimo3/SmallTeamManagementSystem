@@ -27,10 +27,10 @@ public class Funcionario
   [Required]
   public Funcao funcao {get; set;} = Funcao.Eletricista;
   [Required]
-  public Situacao situacao {get; set;} = Situacao.Ativo;
+  public SituacaoFuncionario situacaoFuncionario {get; set;} = SituacaoFuncionario.Ativo;
   [Required]
   public Escala escala {get; set;} = Escala.segSex;
   public enum Funcao {Eletricista, Supervisor, Administrativo}
-  public enum Situacao {Ativo, INSS, Demitido, Ferias}
+  public enum SituacaoFuncionario {Ativo, INSS, Demitido, Ferias}
   public enum Escala {segSex, terSab}
 }

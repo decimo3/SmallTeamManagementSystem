@@ -10,7 +10,7 @@ public class Equipe
   [Required]
   public Servico servico {get; set;}
   [Required]
-  public DateOnly dia {get; set;}
+  public DateTime dia {get; set;}
   [Required]
   [ForeignKey("Funcionario")]
   public int supervisorId {get; set;}
@@ -29,7 +29,7 @@ public class Equipe
   public Viatura viatura {get; set;}
   [Required]
   [ForeignKey("Telefone")]
-  public int telefoneId {get; set;}
+  public long telefoneId {get; set;}
   public Telefone telefone {get; set;}
   public enum Servico {Corte, Religa, PQMT, Negociacao, Inspecao, Cadastro}
 }
