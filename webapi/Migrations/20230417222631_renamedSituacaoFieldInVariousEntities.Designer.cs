@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using mestreruan.api.Database;
@@ -11,9 +12,11 @@ using mestreruan.api.Database;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230417222631_renamedSituacaoFieldInVariousEntities")]
+    partial class renamedSituacaoFieldInVariousEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,8 @@ namespace webapi.Migrations
                     b.Property<int>("espelho")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("dia")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("dia")
+                        .HasColumnType("date");
 
                     b.Property<int>("ajudanteId")
                         .HasColumnType("integer");

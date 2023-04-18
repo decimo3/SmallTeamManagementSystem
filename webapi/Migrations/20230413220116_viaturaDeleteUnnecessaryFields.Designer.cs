@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using mestreruan.api.Database;
@@ -11,9 +12,11 @@ using mestreruan.api.Database;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230413220116_viaturaDeleteUnnecessaryFields")]
+    partial class viaturaDeleteUnnecessaryFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,8 @@ namespace webapi.Migrations
                     b.Property<int>("espelho")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("dia")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("dia")
+                        .HasColumnType("date");
 
                     b.Property<int>("ajudanteId")
                         .HasColumnType("integer");
@@ -42,8 +45,8 @@ namespace webapi.Migrations
                     b.Property<int>("supervisorId")
                         .HasColumnType("integer");
 
-                    b.Property<long>("telefoneId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("telefoneId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("viaturaId")
                         .IsRequired()
@@ -99,7 +102,7 @@ namespace webapi.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("character varying(32)");
 
-                    b.Property<int>("situacaoFuncionario")
+                    b.Property<int>("situacao")
                         .HasColumnType("integer");
 
                     b.Property<string>("sobrenome")
@@ -114,18 +117,18 @@ namespace webapi.Migrations
 
             modelBuilder.Entity("mestreruan.api.Models.Telefone", b =>
                 {
-                    b.Property<long>("numero")
+                    b.Property<int>("numero")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("numero"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("numero"));
 
                     b.Property<string>("chip")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("imei")
-                        .HasColumnType("bigint");
+                    b.Property<int>("imei")
+                        .HasColumnType("integer");
 
                     b.Property<string>("marca")
                         .IsRequired()
@@ -136,9 +139,6 @@ namespace webapi.Migrations
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
-
-                    b.Property<int>("situacaoTelefone")
-                        .HasColumnType("integer");
 
                     b.HasKey("numero");
 
@@ -154,7 +154,7 @@ namespace webapi.Migrations
                     b.Property<int>("ordem")
                         .HasColumnType("integer");
 
-                    b.Property<int>("situacaoViatura")
+                    b.Property<int>("situacao")
                         .HasColumnType("integer");
 
                     b.HasKey("placa");

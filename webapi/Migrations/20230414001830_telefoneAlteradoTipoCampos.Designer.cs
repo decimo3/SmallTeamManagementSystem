@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using mestreruan.api.Database;
@@ -11,9 +12,11 @@ using mestreruan.api.Database;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230414001830_telefoneAlteradoTipoCampos")]
+    partial class telefoneAlteradoTipoCampos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,8 @@ namespace webapi.Migrations
                     b.Property<int>("espelho")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("dia")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("dia")
+                        .HasColumnType("date");
 
                     b.Property<int>("ajudanteId")
                         .HasColumnType("integer");
@@ -42,7 +45,10 @@ namespace webapi.Migrations
                     b.Property<int>("supervisorId")
                         .HasColumnType("integer");
 
-                    b.Property<long>("telefoneId")
+                    b.Property<int>("telefoneId")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("telefonenumero")
                         .HasColumnType("bigint");
 
                     b.Property<string>("viaturaId")
@@ -57,7 +63,7 @@ namespace webapi.Migrations
 
                     b.HasIndex("supervisorId");
 
-                    b.HasIndex("telefoneId");
+                    b.HasIndex("telefonenumero");
 
                     b.HasIndex("viaturaId");
 
@@ -99,7 +105,7 @@ namespace webapi.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("character varying(32)");
 
-                    b.Property<int>("situacaoFuncionario")
+                    b.Property<int>("situacao")
                         .HasColumnType("integer");
 
                     b.Property<string>("sobrenome")
@@ -137,7 +143,7 @@ namespace webapi.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
 
-                    b.Property<int>("situacaoTelefone")
+                    b.Property<int>("situacao")
                         .HasColumnType("integer");
 
                     b.HasKey("numero");
@@ -154,7 +160,7 @@ namespace webapi.Migrations
                     b.Property<int>("ordem")
                         .HasColumnType("integer");
 
-                    b.Property<int>("situacaoViatura")
+                    b.Property<int>("situacao")
                         .HasColumnType("integer");
 
                     b.HasKey("placa");
@@ -184,7 +190,7 @@ namespace webapi.Migrations
 
                     b.HasOne("mestreruan.api.Models.Telefone", "telefone")
                         .WithMany()
-                        .HasForeignKey("telefoneId")
+                        .HasForeignKey("telefonenumero")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
