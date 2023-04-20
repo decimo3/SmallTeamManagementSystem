@@ -62,6 +62,11 @@ public class EquipeController : ControllerBase
     {
       using(var dbContex = new DataBaseContext())
       {
+        equipe.ajudante = dbContex.Funcionarios.Find(equipe.ajudanteId);
+        equipe.motorista = dbContex.Funcionarios.Find(equipe.motoristaId);
+        equipe.supervisor = dbContex.Funcionarios.Find(equipe.supervisorId);
+        equipe.telefone = dbContex.Telefones.Find(equipe.telefoneId);
+        equipe.viatura = dbContex.Viaturas.Find(equipe.viaturaId);
         dbContex.Equipes.Add(equipe);
         dbContex.SaveChanges();
         return NoContent();
