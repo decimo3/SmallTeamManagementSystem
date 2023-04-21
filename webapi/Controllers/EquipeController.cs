@@ -38,23 +38,6 @@ public class EquipeController : ControllerBase
       return BadRequest();
     }
   }
-  [HttpGet("{ano}/{mes}/{dia}/{servico}/{espelho}", Name = "recuperarEquipe")]
-  public ActionResult<IEnumerable<Equipe>> Get(int ano, int mes, int dia, int servico, int espelho)
-  {
-    var data = new DateOnly(year:ano, month:mes, day:dia);
-    var tipoServico = (Equipe.Servico)servico;
-    try
-    {
-      using(var dbContex = new DataBaseContext())
-      {
-        return (from e in dbContex.Equipes where (e.dia == data && e.servico == tipoServico && e.espelho == espelho) select e).ToList();
-      }
-    }
-    catch
-    {
-      return BadRequest();
-    }
-  }
   [HttpPost(Name = "inserirEquipe")]
   public ActionResult Post(Equipe equipe)
   {
