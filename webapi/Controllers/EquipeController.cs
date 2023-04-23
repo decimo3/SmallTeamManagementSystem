@@ -44,6 +44,58 @@ public class EquipeController : ControllerBase
       return BadRequest();
     }
   }
+  [HttpPut(Name = "alterarEquipe")]
+  public ActionResult Put(Equipe equipe)
+  {
+    try
+    {
+      using(var dbContex = new DataBaseContext())
+      {
+        if(!(dbContex.Equipes.Find(equipe.servico, equipe.dia, equipe.espelho) is null))
+        {
+          equipe.ajudante = dbContex.Funcionarios.Find(equipe.ajudanteId);
+          equipe.motorista = dbContex.Funcionarios.Find(equipe.motoristaId);
+          equipe.supervisor = dbContex.Funcionarios.Find(equipe.supervisorId);
+          equipe.telefone = dbContex.Telefones.Find(equipe.telefoneId);
+          equipe.viatura = dbContex.Viaturas.Find(equipe.viaturaId);
+          dbContex.Equipes.Update(equipe);
+          dbContex.SaveChanges();
+          return NoContent();
+        }
+        return NotFound();
+      }
+    }
+    catch
+    {
+      return BadRequest();
+    }
+  }
+  [HttpDelete(Name = "apagarEquipe")]
+  public ActionResult Delete(Equipe equipe)
+  {
+    try
+    {
+      using(var dbContex = new DataBaseContext())
+      {
+        if(!(dbContex.Equipes.Find(equipe.servico, equipe.dia, equipe.espelho) is null))
+        {
+          equipe.ajudante = dbContex.Funcionarios.Find(equipe.ajudanteId);
+          equipe.motorista = dbContex.Funcionarios.Find(equipe.motoristaId);
+          equipe.supervisor = dbContex.Funcionarios.Find(equipe.supervisorId);
+          equipe.telefone = dbContex.Telefones.Find(equipe.telefoneId);
+          equipe.viatura = dbContex.Viaturas.Find(equipe.viaturaId);
+          dbContex.Equipes.Remove(equipe);
+          dbContex.SaveChanges();
+          return NoContent();
+        }
+        return NotFound();
+      }
+    }
+    catch
+    {
+      return BadRequest();
+    }
+  }
 }
 
 
