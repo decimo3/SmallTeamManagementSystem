@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace mestreruan.api.Models;
+namespace mestreruan.api.Entities;
 [Table("equipe")]
 public class Equipe
 {

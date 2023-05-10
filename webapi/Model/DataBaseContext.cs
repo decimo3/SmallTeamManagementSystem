@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using mestreruan.api.Models;
+using mestreruan.api.Entities;
 namespace mestreruan.api.Database;
 public class DataBaseContext : DbContext
 {

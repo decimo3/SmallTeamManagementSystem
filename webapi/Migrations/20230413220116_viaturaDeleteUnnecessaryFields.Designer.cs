@@ -25,7 +25,7 @@ namespace webapi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("mestreruan.api.Models.Equipe", b =>
+            modelBuilder.Entity("mestreruan.api.Entities.Equipe", b =>
                 {
                     b.Property<int>("servico")
                         .HasColumnType("integer");
@@ -67,7 +67,7 @@ namespace webapi.Migrations
                     b.ToTable("equipe", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Models.Funcionario", b =>
+            modelBuilder.Entity("mestreruan.api.Entities.Funcionario", b =>
                 {
                     b.Property<int>("re")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace webapi.Migrations
                     b.ToTable("funcionario", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Models.Telefone", b =>
+            modelBuilder.Entity("mestreruan.api.Entities.Telefone", b =>
                 {
                     b.Property<int>("numero")
                         .ValueGeneratedOnAdd()
@@ -145,7 +145,7 @@ namespace webapi.Migrations
                     b.ToTable("telefone", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Models.Viatura", b =>
+            modelBuilder.Entity("mestreruan.api.Entities.Viatura", b =>
                 {
                     b.Property<string>("placa")
                         .HasMaxLength(7)
@@ -162,33 +162,33 @@ namespace webapi.Migrations
                     b.ToTable("viatura", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Models.Equipe", b =>
+            modelBuilder.Entity("mestreruan.api.Entities.Equipe", b =>
                 {
-                    b.HasOne("mestreruan.api.Models.Funcionario", "ajudante")
+                    b.HasOne("mestreruan.api.Entities.Funcionario", "ajudante")
                         .WithMany()
                         .HasForeignKey("ajudanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Models.Funcionario", "motorista")
+                    b.HasOne("mestreruan.api.Entities.Funcionario", "motorista")
                         .WithMany()
                         .HasForeignKey("motoristaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Models.Funcionario", "supervisor")
+                    b.HasOne("mestreruan.api.Entities.Funcionario", "supervisor")
                         .WithMany()
                         .HasForeignKey("supervisorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Models.Telefone", "telefone")
+                    b.HasOne("mestreruan.api.Entities.Telefone", "telefone")
                         .WithMany()
                         .HasForeignKey("telefoneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Models.Viatura", "viatura")
+                    b.HasOne("mestreruan.api.Entities.Viatura", "viatura")
                         .WithMany()
                         .HasForeignKey("viaturaId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,9 +1,9 @@
-using mestreruan.api.Models;
+using mestreruan.api.Entities;
 using mestreruan.api.Database;
-namespace mestreruan.api.Model;
+namespace mestreruan.api.Models;
 public static class FuncionarioDAO
 {
-  public static List<mestreruan.api.Models.Funcionario> recuperarFuncionarios()
+  public static List<mestreruan.api.Entities.Funcionario> recuperarFuncionarios()
   {
     using(var dbContext = new DataBaseContext())
     {

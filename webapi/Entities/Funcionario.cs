@@ -3,7 +3,7 @@
 // https://macoratti.net/13/12/c_vdda.htm
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace mestreruan.api.Models;
+namespace mestreruan.api.Entities;
 [Table("funcionario")]
 public class Funcionario
 {

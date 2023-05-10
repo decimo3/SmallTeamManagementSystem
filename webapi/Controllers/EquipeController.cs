@@ -1,5 +1,5 @@
 namespace mestreruan.api.controllers;
-using mestreruan.api.Models;
+using mestreruan.api.Entities;
 using mestreruan.api.Database;
 using Microsoft.AspNetCore.Mvc;
 [ApiController]
