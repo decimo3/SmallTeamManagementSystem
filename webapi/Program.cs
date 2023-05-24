@@ -1,6 +1,8 @@
+using mestreruan.api.Services;
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder();
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,5 +19,6 @@ app.Urls.Add($"http://*:{port}");
 // app.Urls.Add("https://*:4433");
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseMiddleware<AuthMiddleware>();
 app.MapControllers();
 app.Run();
