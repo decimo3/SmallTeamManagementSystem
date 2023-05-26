@@ -1,5 +1,6 @@
- namespace mestreruan.api.controllers;
- using mestreruan.api.Entities;
+namespace mestreruan.api.controllers;
+using mestreruan.api.Entities;
+using mestreruan.api.Database;
 
 [Microsoft.AspNetCore.Mvc.ApiController]
 [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
@@ -11,7 +12,12 @@ public class FuncionarioController : Microsoft.AspNetCore.Mvc.ControllerBase
   {
     try
     {
-      return mestreruan.api.Models.FuncionarioDAO.recuperarFuncionarios();
+      using(var dbContext = new DataBaseContext())
+      {
+        return (from f in dbContext.Funcionarios
+                where (f.funcao == Funcionario.Funcao.Eletricista && f.situacaoFuncionario == Funcionario.SituacaoFuncionario.Ativo)
+                select f).ToList();
+      }
     }
     catch (System.InvalidOperationException)
     {
@@ -23,7 +29,12 @@ public class FuncionarioController : Microsoft.AspNetCore.Mvc.ControllerBase
   {
     try
     {
-      return mestreruan.api.Models.FuncionarioDAO.recuperarFuncionario(re);
+      using(var dbContext = new DataBaseContext())
+      {
+        return (from f in dbContext.Funcionarios
+                where f.re == re
+                select f).Single();
+      }
     }
     catch (System.InvalidOperationException)
     {
@@ -35,7 +46,11 @@ public class FuncionarioController : Microsoft.AspNetCore.Mvc.ControllerBase
   {
     try
     {
-      mestreruan.api.Models.FuncionarioDAO.inserirFuncionario(funcionario);
+      using(var dbContext = new DataBaseContext())
+      {
+        dbContext.Funcionarios.Add(funcionario);
+        dbContext.SaveChanges();
+      }
       return NoContent();
     }
     catch (System.InvalidOperationException)
@@ -48,7 +63,11 @@ public class FuncionarioController : Microsoft.AspNetCore.Mvc.ControllerBase
   {
     try
     {
-      mestreruan.api.Models.FuncionarioDAO.alterarFuncionario(funcionario);
+      using(var dbContext = new DataBaseContext())
+      {
+        dbContext.Funcionarios.Update(funcionario);
+        dbContext.SaveChanges();
+      }
       return NoContent();
     }
     catch (System.InvalidOperationException)
@@ -61,7 +80,11 @@ public class FuncionarioController : Microsoft.AspNetCore.Mvc.ControllerBase
   {
     try
     {
-      mestreruan.api.Models.FuncionarioDAO.apagarFuncionario(funcionario);
+      using(var dbContext = new DataBaseContext())
+      {
+        dbContext.Funcionarios.Remove(funcionario);
+        dbContext.SaveChanges();
+      }
       return NoContent();
     }
     catch (System.InvalidOperationException)
