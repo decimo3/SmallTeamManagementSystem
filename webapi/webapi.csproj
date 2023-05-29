@@ -18,7 +18,7 @@
     <PackageReference Include="Npgsql" Version="7.0.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <None Include="../.env" CopyToOutputDirectory="PreserveNewest" />
+    <!-- <None Include="../.env" CopyToOutputDirectory="PreserveNewest" /> -->
   </ItemGroup>
 
 </Project>

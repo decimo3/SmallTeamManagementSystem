@@ -10,7 +10,7 @@ namespace mestreruan.api.Services;
 public class AuthMiddleware
 {
   private readonly RequestDelegate request;
-  private readonly string segredo = System.Environment.GetEnvironmentVariable("SECRET")!;
+  private readonly string segredo = System.Environment.GetEnvironmentVariable("SECRET_KEY")!;
   public AuthMiddleware(RequestDelegate request)
   {
     this.request = request;

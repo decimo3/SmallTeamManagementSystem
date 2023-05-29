@@ -10,7 +10,7 @@ public interface IAuthService
 }
 public class AuthService : IAuthService
 {
-    private readonly string segredo = System.Environment.GetEnvironmentVariable("SECRET");
+    private readonly string segredo = System.Environment.GetEnvironmentVariable("SECRET_KEY")!;
     public IEnumerable<Funcionario>? GetAll()
     {
         using(var dbContext = new DataBaseContext())

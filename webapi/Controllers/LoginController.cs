@@ -15,7 +15,7 @@ public class LoginController : ControllerBase
   public ActionResult<AuthResponse> Post(AuthRequest request)
   {
     var response = authService.Authenticate(request);
-    if(response == null) return BadRequest(new { message = "Username or password is incorrect" });
+    if(response == null) return BadRequest(new { message = "Não foi possível logar com os dados informados!" });
     return Ok(response);
   }
   [Authorize]
