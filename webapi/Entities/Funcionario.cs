@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace mestreruan.api.Entities;
 [Table("funcionario")]
-public class Funcionario
+public class Funcionario : IValidatableObject
 {
   [Required]
   [MaxLength(11)]
@@ -37,4 +37,15 @@ public class Funcionario
   public enum Funcao {Eletricista, Supervisor, Administrativo}
   public enum SituacaoFuncionario {Ativo, INSS, Demitido, Ferias}
   public enum Escala {segSex, terSab}
+  public IEnumerable<ValidationResult> Validate(ValidationContext context)
+  {
+    var validacoes = new List<ValidationResult>();
+    var re = new System.Text.RegularExpressions.Regex("[0-9]{11}");
+    if(!re.IsMatch(this.cpf!)) validacoes.Add(new ValidationResult("O CPF informado não é válido!"));
+    re = new System.Text.RegularExpressions.Regex("[A-z]{3,16}");
+    if (!re.IsMatch(nome)) validacoes.Add(new ValidationResult("O nome tem que ter entre 3 e 16 e somente letras"));
+    re = new System.Text.RegularExpressions.Regex("[A-z ]{6,120}");
+    if (!re.IsMatch(sobrenome)) validacoes.Add(new ValidationResult("O sobrenome deve ter entre 6 e 120 somente letras"));
+    return validacoes;
+  }
 }
