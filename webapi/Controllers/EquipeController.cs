@@ -1,6 +1,6 @@
 namespace mestreruan.api.controllers;
 using mestreruan.api.Entities;
-using mestreruan.api.Database;
+using mestreruan.api.Services;
 using Microsoft.AspNetCore.Mvc;
 [ApiController]
 [Route("api/[controller]")]

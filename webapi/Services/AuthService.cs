@@ -1,6 +1,6 @@
 namespace mestreruan.api.Services;
 using mestreruan.api.Entities;
-using mestreruan.api.Database;
+using mestreruan.api.Services;
 using mestreruan.api.Models;
 public interface IAuthService
 {

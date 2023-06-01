@@ -1,7 +1,7 @@
 namespace mestreruan.api.controllers;
 using Microsoft.AspNetCore.Mvc;
 using mestreruan.api.Entities;
-using mestreruan.api.Database;
+using mestreruan.api.Services;
 [ApiController]
 [Route("api/[controller]")]
 public class TelefoneController : ControllerBase
