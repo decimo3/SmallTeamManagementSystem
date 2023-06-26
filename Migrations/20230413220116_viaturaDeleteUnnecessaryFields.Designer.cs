@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using mestreruan.api.Services;
+using sge.Services;
 
 #nullable disable
 
@@ -25,7 +25,7 @@ namespace webapi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("mestreruan.api.Entities.Equipe", b =>
+            modelBuilder.Entity("sge.Entities.Equipe", b =>
                 {
                     b.Property<int>("servico")
                         .HasColumnType("integer");
@@ -67,7 +67,7 @@ namespace webapi.Migrations
                     b.ToTable("equipe", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Entities.Funcionario", b =>
+            modelBuilder.Entity("sge.Entities.Funcionario", b =>
                 {
                     b.Property<int>("re")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace webapi.Migrations
                     b.ToTable("funcionario", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Entities.Telefone", b =>
+            modelBuilder.Entity("sge.Entities.Telefone", b =>
                 {
                     b.Property<int>("numero")
                         .ValueGeneratedOnAdd()
@@ -145,7 +145,7 @@ namespace webapi.Migrations
                     b.ToTable("telefone", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Entities.Viatura", b =>
+            modelBuilder.Entity("sge.Entities.Viatura", b =>
                 {
                     b.Property<string>("placa")
                         .HasMaxLength(7)
@@ -162,33 +162,33 @@ namespace webapi.Migrations
                     b.ToTable("viatura", (string)null);
                 });
 
-            modelBuilder.Entity("mestreruan.api.Entities.Equipe", b =>
+            modelBuilder.Entity("sge.Entities.Equipe", b =>
                 {
-                    b.HasOne("mestreruan.api.Entities.Funcionario", "ajudante")
+                    b.HasOne("sge.Entities.Funcionario", "ajudante")
                         .WithMany()
                         .HasForeignKey("ajudanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Entities.Funcionario", "motorista")
+                    b.HasOne("sge.Entities.Funcionario", "motorista")
                         .WithMany()
                         .HasForeignKey("motoristaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Entities.Funcionario", "supervisor")
+                    b.HasOne("sge.Entities.Funcionario", "supervisor")
                         .WithMany()
                         .HasForeignKey("supervisorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Entities.Telefone", "telefone")
+                    b.HasOne("sge.Entities.Telefone", "telefone")
                         .WithMany()
                         .HasForeignKey("telefoneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("mestreruan.api.Entities.Viatura", "viatura")
+                    b.HasOne("sge.Entities.Viatura", "viatura")
                         .WithMany()
                         .HasForeignKey("viaturaId")
                         .OnDelete(DeleteBehavior.Cascade)

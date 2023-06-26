@@ -1,4 +1,4 @@
-namespace mestreruan.api.Models;
+namespace sge.Models;
 using System.ComponentModel.DataAnnotations;
 public class AuthRequest
 {

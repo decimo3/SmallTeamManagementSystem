@@ -1,5 +1,5 @@
-namespace mestreruan.api.Models;
-using mestreruan.api.Entities;
+namespace sge.Models;
+using sge.Entities;
 public class AuthResponse
 {
     public int re {get; set;}

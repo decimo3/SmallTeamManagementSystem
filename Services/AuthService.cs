@@ -1,7 +1,6 @@
-namespace mestreruan.api.Services;
-using mestreruan.api.Entities;
-using mestreruan.api.Services;
-using mestreruan.api.Models;
+namespace sge.Services;
+using sge.Entities;
+using sge.Models;
 public interface IAuthService
 {
     AuthResponse Authenticate(AuthRequest model);

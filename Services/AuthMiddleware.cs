@@ -6,7 +6,7 @@ Caso não tenha um token, o usuário não será autenticado, e só poderá acess
 <method>attachUserToContext - Método responsável por verificar se há um tokem no cabeçalho da
  requisição, valida-lo e anexa-lo ao contexto atual da requisição.
 */
-namespace mestreruan.api.Services;
+namespace sge.Services;
 public class AuthMiddleware
 {
   private readonly RequestDelegate request;

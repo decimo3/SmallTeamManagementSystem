@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace mestreruan.api.Entities;
+namespace sge.Entities;
 [Table("telefone")]
 public class Telefone
 {

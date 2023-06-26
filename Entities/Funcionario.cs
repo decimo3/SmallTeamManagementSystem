@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace mestreruan.api.Entities;
+namespace sge.Entities;
 [Table("funcionario")]
 public class Funcionario : IValidatableObject
 {

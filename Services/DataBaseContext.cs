@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using mestreruan.api.Entities;
-namespace mestreruan.api.Services;
+using sge.Entities;
+namespace sge.Services;
 public class DataBaseContext : DbContext
 {
   private string server = System.Environment.GetEnvironmentVariable("POSTGRES_HOST");
