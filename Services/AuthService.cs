@@ -3,39 +3,38 @@ using sge.Entities;
 using sge.Models;
 public interface IAuthService
 {
-    AuthResponse Authenticate(AuthRequest model);
+    AuthResponse? Authenticate(AuthRequest model);
     IEnumerable<Funcionario>? GetAll();
     Funcionario? GetById(int re);
 }
 public class AuthService : IAuthService
 {
     private readonly string segredo = System.Environment.GetEnvironmentVariable("SECRET_KEY")!;
+    private DataBaseContext dbContext;
+    public AuthService(DataBaseContext _dbContext)
+    {
+        dbContext = _dbContext;
+    }
     public IEnumerable<Funcionario>? GetAll()
     {
-        using(var dbContext = new DataBaseContext())
+        try
         {
-            try
-            {
-                return dbContext.Funcionarios.ToList();
-            }
-            catch
-            {
-                return null;
-            }
+            return dbContext.Funcionarios.ToList();
+        }
+        catch
+        {
+            return null;
         }
     }
     public Funcionario? GetById(int re)
     {
-        using(var dbContext = new DataBaseContext())
+        try
         {
-            try
-            {
-                return dbContext.Funcionarios.Find(re);
-            }
-            catch
-            {
-                return null;
-            }
+            return dbContext.Funcionarios.Find(re);
+        }
+        catch
+        {
+            return null;
         }
     }
     private string generateJwtToken(Funcionario funcionario)
@@ -56,20 +55,17 @@ public class AuthService : IAuthService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
-    public AuthResponse Authenticate(AuthRequest model)
+    public AuthResponse? Authenticate(AuthRequest model)
     {
-        using(var dbContext = new DataBaseContext())
+        try
         {
-            try
-            {
-                var user = (from u in dbContext.Funcionarios where (u.matricula == model.matricula && u.senha == model.palavra) select u).Single(); // u.senha != null &&
-                var token = generateJwtToken(user);
-                return new AuthResponse(user, token);
-            }
-            catch
-            {
-                return null;
-            }
+            var user = (from u in dbContext.Funcionarios where (u.matricula == model.matricula && u.senha == model.palavra) select u).Single(); // u.senha != null &&
+            var token = generateJwtToken(user);
+            return new AuthResponse(user, token);
+        }
+        catch
+        {
+            return null;
         }
     }
 }
