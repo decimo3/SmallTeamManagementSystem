@@ -1,18 +1,18 @@
-@page
+
 @{
   ViewData["Title"] = "Autenticação";
-  <div class="container">
-    <h1 class="text-center">Área do usuário</h1>
-    <form id="form-login">
-      <fieldset>
-      <input class="form-control my-3" minlength="6" maxlength="6" type="number" name="matricula" id="matricula" placeholder="Matrícula Manserv" required>
-      <input class="form-control my-3" type="password" name="palavra" id="palavra" placeholder="Senha de acesso" required>
-    <div>
-      É o primeiro acesso ou esqueceu a sua senha, <a asp-page="Recovery">clique aqui</a><br/>
-    </div>
-    <input class="btn btn-primary btn-lg btn-block submit" type="submit" value="Entrar">
-    </fieldset>
-  </form>
-  <script defer>$("form-login").validate();</script>
-  </div>
 }
+<div class="container">
+  <h1 class="text-center">Área do usuário</h1>
+  <form id="form-login">
+    <fieldset>
+    <input class="form-control my-3" minlength="6" maxlength="6" type="number" name="matricula" id="matricula" placeholder="Matrícula Manserv" required>
+    <input class="form-control my-3" type="password" name="palavra" id="palavra" placeholder="Senha de acesso" required>
+  <div>
+    É o primeiro acesso ou esqueceu a sua senha, <a asp-area="" asp-controller="Auth" asp-action="Recovery">clique aqui</a><br/>
+  </div>
+  <input class="btn btn-primary btn-lg btn-block submit" type="submit" value="Entrar">
+  </fieldset>
+</form>
+<script defer>$("form-login").validate();</script>
+</div>
