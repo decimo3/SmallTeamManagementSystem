@@ -1,0 +1,83 @@
+@model IEnumerable<sge.Entities.Funcionario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.matricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apelido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.funcao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.situacaoFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.escala)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.matricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apelido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.funcao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.situacaoFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.escala)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.re">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.re">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.re">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
