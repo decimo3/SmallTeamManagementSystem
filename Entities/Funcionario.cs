@@ -50,10 +50,10 @@ public class Funcionario : IValidatableObject
     var validacoes = new List<ValidationResult>();
     var re = new System.Text.RegularExpressions.Regex("");
     // Validação da matricula do funcionario
-    re = new System.Text.RegularExpressions.Regex("[0-9]{7}");
+    re = new System.Text.RegularExpressions.Regex("[0-9]{6}");
     if(!re.IsMatch(this.re.ToString()!)) validacoes.Add(new ValidationResult("O Registro Empregado informada não é válida!"));
     // Validação da matrícula do cliente
-    re = new System.Text.RegularExpressions.Regex("[0-9]{6}");
+    re = new System.Text.RegularExpressions.Regex("[0-9]{7}");
     if(!re.IsMatch(this.matricula.ToString()!)) validacoes.Add(new ValidationResult("A matrícula Light informada não é válida!"));
     // Validação do CPF do funcionario
     re = new System.Text.RegularExpressions.Regex("[0-9]{11}");
