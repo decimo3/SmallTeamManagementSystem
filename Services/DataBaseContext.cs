@@ -29,6 +29,7 @@ public class DataBaseContext : DbContext
     modelBuilder.Entity<Funcionario>().HasKey(i => i.re);
     modelBuilder.Entity<Funcionario>().ToTable("funcionario");
     modelBuilder.Entity<Viatura>().ToTable("viatura");
+    modelBuilder.Entity<Viatura>().HasKey(i => i.placa);
     modelBuilder.Entity<Equipe>().HasKey(o => new {o.servico, o.espelho, o.dia});
     modelBuilder.Entity<Equipe>().ToTable("equipe");
     modelBuilder.Entity<Telefone>().HasKey(i => i.numero);
