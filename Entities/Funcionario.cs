@@ -27,7 +27,6 @@ public class Funcionario : IValidatableObject
   [Required]
   [Display(Name = "Sobrenome completo")]
   public string? sobrenome {get; set;}
-  [MaxLength(16)]
   [Display(Name = "Apelido")]
   public string? apelido {get; set;} // opcional
   [JsonIgnore]
@@ -86,7 +85,7 @@ public class Funcionario : IValidatableObject
     }
     if(!String.IsNullOrEmpty(this.apelido))
     {
-      re = new System.Text.RegularExpressions.Regex("[A-z ]{3,16}");
+      re = new System.Text.RegularExpressions.Regex("[\\w]{3,16}");
       if (re.IsMatch(this.apelido)) validacoes.Add(new ValidationResult("O apelido está fora do padrão definido!"));
     }
     return validacoes;
