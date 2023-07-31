@@ -17,3 +17,14 @@ sudo docker-compose up --detach
 * Docker - For a homogeneous environment;
 * Dotnet - For api creation and dynamic pages;
 * Postgre - For data persistence and better learning;
+
+```sh
+dotnet tool install --local dotnet-aspnet-codegenerator
+dotnet tool install --local dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+```
