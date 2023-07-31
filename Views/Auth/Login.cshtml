@@ -1,18 +1,34 @@
-
+@model sge.Models.AuthRequest
 @{
   ViewData["Title"] = "Autenticação";
 }
+
 <div class="container">
-  <h1 class="text-center">Área do usuário</h1>
-  <form id="form-login">
-    <fieldset>
-    <input class="form-control my-3" minlength="6" maxlength="6" type="number" name="matricula" id="matricula" placeholder="Matrícula Manserv" required>
-    <input class="form-control my-3" type="password" name="palavra" id="palavra" placeholder="Senha de acesso" required>
-  <div>
-    É o primeiro acesso ou esqueceu a sua senha, <a asp-area="" asp-controller="Auth" asp-action="Recovery">clique aqui</a><br/>
+  <div class="row justify-content-center">
+    <div class="card border-light w-50">
+      <h1 class="card-title text-center py-2">Área do usuário</h1>
+      <hr/>
+      <div class="card-body">
+        <form asp-action="Login">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="form-group py-2">
+            <label asp-for="matricula" class="control-label"></label>
+            <input asp-for="matricula" class="form-control" type="number"/>
+            <span asp-validation-for="matricula" class="text-danger"></span>
+          </div>
+          <div class="form-group py-2">
+            <label asp-for="palavra" class="control-label"></label>
+            <input asp-for="palavra" class="form-control" type="password"/>
+            <span asp-validation-for="palavra" class="text-danger"></span>
+          </div>
+          <div class="form-group py-2 row mx-4">
+            <input type="submit" value="Entrar" class="btn btn-primary btn-block" />
+          </div>
+        </form>
+      </div>
+      <div>
+        É o primeiro acesso ou esqueceu a sua senha, <a asp-area="" asp-controller="Auth" asp-action="Recovery">clique aqui.</a><br/>
+      </div>
+    </div>
   </div>
-  <input class="btn btn-primary btn-lg btn-block submit" type="submit" value="Entrar">
-  </fieldset>
-</form>
-<script defer>$("form-login").validate();</script>
 </div>
