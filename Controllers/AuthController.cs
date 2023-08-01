@@ -4,12 +4,12 @@ using sge.Services;
 namespace sge.Controllers;
 public class AuthController : Controller
 {
-  private readonly DataBaseContext _context;
-  private readonly IAuthService _service;
-  public AuthController(DataBaseContext context, IAuthService service)
+  private readonly IAuthService AuthService;
+  private readonly IHttpContextAccessor context;
+  public AuthController(IAuthService AuthService, IHttpContextAccessor context)
   {
-    _context = context;
-    _service = service;
+    this.AuthService = AuthService;
+    this.context = context;
   }
   [HttpGet]
   public IActionResult Login()
@@ -26,8 +26,13 @@ public class AuthController : Controller
   public IActionResult Login(AuthRequest authRequest)
   {
     if(!ModelState.IsValid) return View("Login");
-    var token = _service.Authenticate(authRequest);
-    if(token is null) return View("Login");
-    return View("Login");// Ok(token)
+    var auth = AuthService.Authenticate(authRequest);
+    if(auth is null) return View("Login");
+    var options = new CookieOptions();
+    options.Expires = DateTime.Now.AddDays(7);
+    options.Secure = true; // define a cookie como seguro, somente será enviado em conexões HTTPS.
+    options.HttpOnly = true; // define a cookie como acessível somente por HTTP, não pode ser acessado por JavaScript.
+    context.HttpContext.Response.Cookies.Append("MeuCookie", auth.token, options);
+    return RedirectToAction(controllerName: "Home", actionName: "Index");
   }
 }

@@ -43,7 +43,7 @@ public class AuthMiddleware
   }
   public async Task Invoke(HttpContext context, IAuthService authService)
   {
-    var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+    var token = context.Request.Cookies["MeuCookie"];
     if (token != null) attachUserToContext(context, authService, token);
     await request(context);
   }
