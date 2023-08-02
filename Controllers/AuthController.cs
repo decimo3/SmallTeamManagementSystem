@@ -14,12 +14,16 @@ public class AuthController : Controller
   [HttpGet]
   public IActionResult Login()
   {
-    return View();
+    var user = (sge.Entities.Funcionario)context.HttpContext.Items["User"];
+    if(user is null) return View();
+    return RedirectToAction(controllerName: "Home", actionName: "Index");
   }
   [HttpGet]
   public IActionResult Recovery()
   {
-    return View();
+    var user = (sge.Entities.Funcionario)context.HttpContext.Items["User"];
+    if(user is null) return View();
+    return RedirectToAction(controllerName: "Home", actionName: "Index");
   }
   [HttpPost]
   [ValidateAntiForgeryToken]
