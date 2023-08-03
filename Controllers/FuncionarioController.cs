@@ -10,6 +10,7 @@ using sge.Services;
 
 namespace sge.Controllers
 {
+    [Authorize]
     public class FuncionarioController : Controller
     {
         private readonly DataBaseContext _context;
@@ -19,7 +20,8 @@ namespace sge.Controllers
             _context = context;
         }
 
-        // GET: Funcionario
+        [HttpGet]
+        [Route("Funcionario")]
         public async Task<IActionResult> Index()
         {
             if(_context.Funcionarios != null)
@@ -29,7 +31,8 @@ namespace sge.Controllers
             return Problem("Entity set 'DataBaseContext.Funcionarios'  is null.");
         }
 
-        // GET: Funcionario/Details/5
+        [HttpGet]
+        [Route("Funcionario/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Funcionarios == null)
@@ -47,16 +50,15 @@ namespace sge.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Create
+        [HttpGet]
+        [Route("Funcionario/Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Funcionario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("Funcionario/Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("cpf,re,matricula,nome,sobrenome,apelido,senha,funcao,situacaoFuncionario,escala")] Funcionario funcionario)
         {
@@ -68,7 +70,8 @@ namespace sge.Controllers
             }
             return View(funcionario);
         }
-
+        [HttpGet]
+        [Route("Funcionario/Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Funcionarios == null)
@@ -84,10 +87,8 @@ namespace sge.Controllers
             return View(funcionario);
         }
 
-        // POST: Funcionario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("Funcionario/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("cpf,re,matricula,nome,sobrenome,apelido,senha,funcao,situacaoFuncionario,escala")] Funcionario funcionario)
         {
@@ -119,7 +120,8 @@ namespace sge.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Delete/5
+        [HttpGet]
+        [Route("Funcionario/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Funcionarios == null)
@@ -137,8 +139,8 @@ namespace sge.Controllers
             return View(funcionario);
         }
 
-        // POST: Funcionario/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [Route("Funcionario/Delete/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
