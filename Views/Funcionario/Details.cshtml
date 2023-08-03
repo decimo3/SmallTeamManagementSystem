@@ -4,69 +4,67 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Funcionario</h4>
-    <hr />
+<div class="row justify-content-center">
+<div class="card border-light w-50">
+<h1 class="text-center">Detalhes funcionário</h1>
+<hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.cpf)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.cpf)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.matricula)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.matricula)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.sobrenome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.sobrenome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.apelido)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.apelido)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.senha)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.senha)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.funcao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.funcao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.situacaoFuncionario)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.situacaoFuncionario)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.escala)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.escala)
         </dd>
     </dl>
+<div class="row justify-content-center py-2">
+    <a class="col-12 py-2" asp-action="Edit" asp-route-id="@Model?.re">
+        <button class="btn btn-warning col-12">Edit</button>
+    </a>
+    <a asp-action="Index">
+        <button class="btn btn-primary col-12">Back to List</button>
+    </a>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.re">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+</div>
 </div>
