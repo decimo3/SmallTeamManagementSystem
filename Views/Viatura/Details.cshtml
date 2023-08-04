@@ -4,27 +4,37 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Viatura</h4>
+<div class="row justify-content-center">
+<div class="card border-light w-50">
+    <h1 class="text-center">Detalhes viatura</h1>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-4">
+            @Html.DisplayNameFor(model => model.placa)
+        </dt>
+        <dd class="col-8">
+            @Html.DisplayFor(model => model.placa)
+        </dd>
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.ordem)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.ordem)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-4">
             @Html.DisplayNameFor(model => model.situacaoViatura)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-8">
             @Html.DisplayFor(model => model.situacaoViatura)
         </dd>
     </dl>
+    <div class="row justify-content-center">
+        <a asp-action="Edit" asp-route-id="@Model?.placa" class="py-2">
+            <button class="btn btn-primary col-12">Edit</button>
+        </a>
+        <a asp-action="Index" class="py-2">
+            <button class="btn btn-primary col-12">Cancel</button>
+        </a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.placa">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
